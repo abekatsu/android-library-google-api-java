@@ -1,0 +1,23 @@
+The libraries contained here in binary format are licensed according to their
+own licenses, which allow their usage for the androidGDataAPILib library. 
+
+References:
+
+google-api-java-client 1.4.1-beta (http://code.google.com/p/google-api-java-client/)
+  google-api-client-1.4.1-beta.jar
+  google-api-client-googleapis-1.4.1-beta.jar
+
+
+  google-api-client-1.4.1-beta-sources.jar and 
+  google-api-client-googleapis-1.4.1-beta-sources.jar are an archive 
+    of source files of the above jar file, respectively.
+
+Apache HTTP Client version 4.0.3 (http://hc.apache.org/httpcomponents-client-ga/)
+  dependencies/httpclient-4.0.3.jar  
+  dependencies/httpclient-4.0.3-sources.jar is a source archive for it.  
+
+Google Guava version r09 (http://code.google.com/p/guava-libraries/)
+  dependencies/guava-r09.jar
+  dependencies/guava-r09-sources.jar is a source archive for it.  
+
+
