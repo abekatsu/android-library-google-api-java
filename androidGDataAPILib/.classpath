@@ -3,9 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="/Users/abekatsu/lib/google-api-java-client-1.4.1-beta/google-api-client-1.4.1-beta.jar" sourcepath="/Users/abekatsu/lib/google-api-java-client-1.4.1-beta/google-api-client-1.4.1-beta-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/abekatsu/lib/google-api-java-client-1.4.1-beta/google-api-client-googleapis-1.4.1-beta.jar" sourcepath="/Users/abekatsu/lib/google-api-java-client-1.4.1-beta/google-api-client-googleapis-1.4.1-beta-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/abekatsu/lib/google-api-java-client-1.4.1-beta/dependencies/httpclient-4.0.3.jar" sourcepath="/Users/abekatsu/lib/google-api-java-client-1.4.1-beta/dependencies/httpclient-4.0.3-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/abekatsu/lib/google-api-java-client-1.4.1-beta/dependencies/guava-r09.jar" sourcepath="/Users/abekatsu/lib/google-api-java-client-1.4.1-beta/dependencies/guava-r09-sources.jar"/>
+	<classpathentry kind="lib" path="lib/google-api-client-1.4.1-beta.jar" sourcepath="lib/google-api-client-1.4.1-beta-sources.jar"/>
+	<classpathentry kind="lib" path="lib/google-api-client-googleapis-1.4.1-beta.jar" sourcepath="lib/google-api-client-googleapis-1.4.1-beta-sources.jar"/>
+	<classpathentry kind="lib" path="lib/dependencies/guava-r09.jar" sourcepath="lib/dependencies/guava-r09-sources.jar"/>
+	<classpathentry kind="lib" path="lib/dependencies/httpclient-4.0.3.jar" sourcepath="lib/dependencies/httpclient-4.0.3-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
