@@ -92,7 +92,11 @@ public class GoogleDocFeed {
     }
 
     
-    protected String getLinkRel(String rel) {
+    /**
+     * @param rel
+     * @return
+     */
+    public String getLinkRel(String rel) {
         if (links == null) {
             return null;
         }
