@@ -217,7 +217,7 @@ public class GDataSpreadSheetClient extends GDataDocClient {
      * @param colCount
      * @return created WorkSheetEntry
      */
-    public WorkSheetEntry createWorkSheetEntry(String url, String title, int rowCount, int colCount) {
+    public WorkSheetEntry createWorkSheetEntry(String url_str, String title, int rowCount, int colCount) {
         WorkSheetEntry newEntry, retEntry = null;
 
         newEntry = new WorkSheetEntry();
@@ -228,12 +228,15 @@ public class GDataSpreadSheetClient extends GDataDocClient {
         AtomContent content = new AtomContent();
         content.entry = newEntry;
         content.namespaceDictionary = createXmlNamespaceDictionary();
+        
+        if (debug) {
+            newEntry.writeLog(TAG);
+        }
 
         HttpRequest request = null;
+        GenericUrl url = new SpreadSheetUrl(url_str);
         try {
-            request = requestFactory.buildPostRequest(new SpreadSheetUrl(url), content);
-            // TODO this is workaround to deal with GAE bug, which cannot handle etag rightly. 
-            request.headers.set("If-Match", "*");
+            request = requestFactory.buildPostRequest(url, content);
             retEntry = request.execute().parseAs(WorkSheetEntry.class);
             if (debug) {
                 retEntry.writeLog(TAG);
@@ -241,12 +244,8 @@ public class GDataSpreadSheetClient extends GDataDocClient {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } finally {
-            // TODO this is workaround to deal with GAE bug, which cannot handle etag rightly. 
-            if (request != null && request.headers != null) {
-                request.headers.set("If-Match", null);
-            }
         }
+        
         return retEntry;
 
     }
