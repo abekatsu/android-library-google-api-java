@@ -1,0 +1,75 @@
+Android Library for Google APIs Client Library for Java
+
+Gorl is to provide ways with via Google APIs Client Library for Java
+
+Though it is not sufficient, but avaliable classes are currently:
+
+- client for Google SpreadSheet
+- model for Google SpreadSheet
+
+Sample code for Android Application with OAuth1.0a is:
+
+    public void onCreate(Bundle savedInstanceState) {
+        boolean retvalue = false;
+        
+        String token = getToken(); // get Token from Preferences
+        String tokenSecret = getTokenSecret(); // get TokenSecret from Preferences
+
+        if (token == null || tokenSecret == null) {
+            GDataSpreadSheetClient client = 
+                new GDataSpreadSheetClient(mAppName, null, null);
+            OAuthCredentialsResponse response = tryAuthenticate(client, isViewAction, callback_url_str);
+            if (response != null) {
+                saveTokenAndTokenSecret(response);
+                token = response.token;
+                tokenSecret = response.tokenSecret; 
+            }
+        }
+        
+        if (token != null && tokenSecret != null) {
+            GDataSpreadSheetClient client = 
+                new GDataSpreadSheetClient(mAppName, token, tokenSecret);
+            client.createEmptySpreadSheets("Your Sheets");
+        }
+    }
+
+    private OAuthCredentialsResponse tryAuthenticate(GDataSpreadSheetClient client, 
+            boolean isViewAction, String callback_url_str) {
+
+        try {
+            if (!isViewAction && (isTemporary || credentials == null) ) {
+                isTemporary = true;
+                client.callback = callback_url_str;
+                credentials = client.getCredentialsResponse();
+                GoogleOAuthAuthorizeTemporaryTokenUrl temporaryTokenUrl 
+                    = client.getOAuthAuthorizeTemporaryTokenUrl(credentials);
+                
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(temporaryTokenUrl.build()));
+                startActivity(intent);
+            } else {
+                if (isViewAction) {
+                    Uri uri = this.getIntent().getData();
+                    if (uri != null) {
+                        Log.d(TAG, "uri: " + uri.toString());
+                        client.callback = null;
+                        OAuthCallbackUrl callbackUrl = new OAuthCallbackUrl(uri.toString());
+                        GoogleOAuthGetAccessToken accessToken = client.getOAuthAccessToken(callbackUrl, credentials);
+                        OAuthCredentialsResponse response = accessToken.execute();
+                        isTemporary = false;
+                        credentials = null;
+                        return response;
+                    }
+                }
+                Log.d(TAG, "authenticated()");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+I am preparing JavaDoc and create any other clients and models for other service.
+
+Please semd me your request, report bugs and so on
